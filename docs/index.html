@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IMAGEdit: LET ANY SUBJECT TRANSFORM </title>
   <meta name="description" content="A training-free method for mulit-subject video editing" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     :root {
       --bg: #ffffff;
@@ -16,46 +19,37 @@
       --border: #e2e8f0;
     }
     * { box-sizing: border-box; }
-    
-    html, 
-    body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-    
+
     /* Header Section */
     .header { text-align: center; margin-bottom: 0px; padding: 20px 0; }
     .title { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
     .authors { font-size: 18px; margin-bottom: 10px; color: var(--muted); }
     .affiliations { font-size: 16px; margin-bottom: 10px; color: var(--muted); }
     .conference { font-size: 20px; font-weight: 600; margin-bottom: 25px; color: var(--accent); }
-    
-    /* .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; } */
-    /* .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; background: var(--text); color: white; text-decoration: none; font-weight: 500; transition: all 0.2s; }
-    .btn:hover { background: var(--accent); text-decoration: none; transform: translateY(-1px); }
-    .btn.arxiv { background: #b91c1c; }
-    .btn.code { background: #059669; }
-    .btn.data { background: #7c3aed; } */
 
     /* Main Video/Image Section */
     .hero { text-align: center; margin-bottom: 50px; }
     .hero-media { background: #000; border-radius: 12px; overflow: hidden; margin-bottom: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
     .hero video, .hero img { width: 100%; height: auto; display: block; }
     .tldr { 
-  background: linear-gradient(135deg, #fffbeb, #fef3c7); /* 更浅的黄色渐变 */
-  padding: 15px 20px; 
-  border-radius: 8px; 
-  border-left: 4px solid #f59e0b; 
-  margin: 20px 0; 
-}
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      padding: 15px 20px; 
+      border-radius: 8px; 
+      border-left: 4px solid #f59e0b; 
+      margin: 20px 0; 
+    }
     .tldr strong { color: #92400e; }
 
     /* Content Sections */
     .section { margin-bottom: 50px; }
     .section-title { font-size: 28px; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
     .abstract { font-size: 16px; line-height: 1.7; text-align: justify; background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
-    
+
     /* Method Section */
     .method-diagram { text-align: center; margin: 30px 0; }
     .method-diagram img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -72,556 +66,201 @@
     .video-meta { padding: 16px; }
     .video-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
     .video-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
-   /* Comparison Grid Styles */
-   /* Comparison Grid Styles - 调整超出和间距 */
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  margin-top: 30px;
-  max-width: 1600px;
-  width: calc(100% + 340px);
-  margin-left: -170px;
-  margin-right: -170px;
-  padding: 0 80px;
-  box-sizing: border-box;
-}
 
-.comparison-group {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
+    /* Comparison Grid Styles */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 30px;
+      max-width: 1600px;
+      width: calc(100% + 340px);
+      margin-left: -170px;
+      margin-right: -170px;
+      padding: 0 80px;
+      box-sizing: border-box;
+    }
+    .comparison-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .comparison-group:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .video-pair { display: flex; gap: 22px; margin-bottom: 22px; }
+    .video-item { flex: 1; }
 
-.comparison-group:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-}
+    .video-wrapper video { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; border-radius: 8px; background: #000; }
+    .video-wrapper { position: relative; aspect-ratio: 720/480; background: #000; border-radius: 8px; overflow: hidden; }
 
-.video-pair {
-  display: flex;
-  gap: 22px;
-  margin-bottom: 22px;
-}
+    .prompt-text {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-style: italic;
+    }
 
-.video-item {
-  flex: 1;
-}
+    /* 美化原生控制条 */
+    .video-wrapper video::-webkit-media-controls-panel { background: rgba(0, 0, 0, 0.7); }
+    .video-wrapper video::-webkit-media-controls-current-time-display,
+    .video-wrapper video::-webkit-media-controls-time-remaining-display {
+      color: white; font-size: 12px;
+    }
 
-.video-wrapper video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain; /* 保持这个设置，确保视频完整显示且居中 */
-  object-position: center; /* 确保居中对齐 */
-  border-radius: 8px;
-  background: #000; /* 确保背景是黑色 */
-}
+    /* Responsive Design */
+    @media (max-width: 1400px) {
+      .comparison-grid { width: calc(100% + 240px); margin-left: -120px; margin-right: -120px; padding: 0 60px; }
+    }
+    @media (max-width: 1200px) {
+      .comparison-grid { width: calc(100% + 160px); margin-left: -80px; margin-right: -80px; padding: 0 50px; }
+    }
+    @media (max-width: 1024px) {
+      .comparison-grid { grid-template-columns: 1fr; width: calc(100% + 100px); margin-left: -50px; margin-right: -50px; padding: 0 40px; gap: 20px; }
+    }
+    @media (max-width: 768px) {
+      .comparison-grid { width: 100%; margin-left: 0; margin-right: 0; padding: 0 20px; }
+      .comparison-group { padding: 20px; }
+      .video-pair { flex-direction: column; gap: 15px; }
+      .prompt-text { font-size: 14px; padding: 10px 12px; }
+    }
 
-/* 为了确保video-wrapper也有黑色背景 */
-.video-wrapper {
-  position: relative;
-  aspect-ratio: 720/480;
-  background: #000; /* 黑色背景 */
-  border-radius: 8px;
-  overflow: hidden;
-}
+    /* 视频控制样式 */
+    .video-wrapper { position: relative; aspect-ratio: 720/480; background: #000; border-radius: 8px; overflow: hidden; }
+    .video-wrapper video { width: 100%; height: 100%; display: block; object-fit: contain; border-radius: 8px; }
 
-.prompt-text {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 12px 16px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-}
+    /* Multi-Scenario Applications Styles */
+    .scenario-block {
+      margin-bottom: 50px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      max-width: 1600px;
+      width: calc(100% + 340px);
+      margin-left: -170px;
+      margin-right: -170px;
+      padding-left: 30px; 
+      padding-right: 30px; 
+      box-sizing: border-box;
+    }
+    .scenario-block .video-wrapper { position: relative; aspect-ratio: 720/480; background: #000; border-radius: 8px; overflow: hidden; }
+    .scenario-block .video-wrapper video { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; border-radius: 8px; background: #000; }
 
-/* 美化原生控制条 */
-.video-wrapper video::-webkit-media-controls-panel {
-  background: rgba(0, 0, 0, 0.7);
-}
+    .single-row-videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 0; }
+    .video-group-left, .video-group-right { text-align: center; }
+    .videos-pair { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 15px; }
+    .single-video-item { text-align: center; }
+    .group-prompt-text {
+      text-align: center; font-size: 14px; font-weight: 500; color: var(--muted);
+      padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; font-style: italic;
+    }
 
-.video-wrapper video::-webkit-media-controls-current-time-display,
-.video-wrapper video::-webkit-media-controls-time-remaining-display {
-  color: white;
-  font-size: 12px;
-}
+    .dual-videos-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 20px; margin-top: 0; }
+    .dual-video-group { text-align: center; }
+    .dual-prompt-text {
+      text-align: center; font-size: 15px; font-weight: 500; color: var(--muted);
+      padding: 10px 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-style: italic; margin-top: 18px;
+    }
 
-/* Responsive Design */
-@media (max-width: 1400px) {
-  .comparison-grid {
-    width: calc(100% + 240px);
-    margin-left: -120px;
-    margin-right: -120px;
-    padding: 0 60px;
-  }
-}
+    .large-blocks-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 0; }
+    .large-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; }
+    .quad-videos-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 15px; }
+    .quad-video-item { text-align: center; }
+    .quad-prompt-text {
+      text-align: center; font-size: 12px; font-weight: 500; color: var(--muted);
+      padding: 6px 10px; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0; font-style: italic; margin-top: 10px;
+    }
 
-@media (max-width: 1200px) {
-  .comparison-grid {
-    width: calc(100% + 160px);
-    margin-left: -80px;
-    margin-right: -80px;
-    padding: 0 50px;
-  }
-}
+    @media (max-width: 1400px) {
+      .scenario-block { width: calc(100% + 240px); margin-left: -120px; margin-right: -120px; padding-left: 25px; padding-right: 25px; }
+    }
+    @media (max-width: 1200px) {
+      .scenario-block { width: calc(100% + 160px); margin-left: -80px; margin-right: -80px; padding-left: 20px; padding-right: 20px; }
+    }
+    @media (max-width: 1024px) {
+      .scenario-block { width: calc(100% + 100px); margin-left: -50px; margin-right: -50px; padding-left: 40px; padding-right: 40px; }
+      .paired-videos-row { grid-template-columns: 1fr; }
+      .dual-videos-grid { grid-template-columns: 1fr; }
+      .large-blocks-container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .scenario-block { width: 100%; margin-left: 0; margin-right: 0; padding: 20px; }
+      .video-pair-group { grid-template-columns: 1fr; }
+      .quad-videos-grid { grid-template-columns: 1fr; }
+    }
 
-@media (max-width: 1024px) {
-  .comparison-grid {
-    grid-template-columns: 1fr;
-    width: calc(100% + 100px);
-    margin-left: -50px;
-    margin-right: -50px;
-    padding: 0 40px;
-    gap: 20px;
-  }
-}
+    .triple-videos-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 0; }
+    .triple-video-item { text-align: center; }
+    .triple-prompt-text {
+      text-align: center; font-size: 15px; font-weight: 500; color: var(--muted);
+      padding: 10px 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-style: italic; margin-top: 18px;
+    }
+    @media (max-width: 1024px) {
+      .triple-videos-row { grid-template-columns: 1fr; gap: 20px; }
+    }
 
-@media (max-width: 768px) {
-  .comparison-grid {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 20px;
-  }
-  
-  .comparison-group {
-    padding: 20px;
-  }
-  
-  .video-pair {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .prompt-text {
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-}
+    /* Comparison with other methods */
+    .comparison-row {
+      margin-bottom: 40px;
+      width: calc(100% + 400px);
+      margin-left: -200px;
+      margin-right: -200px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .method-videos { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-bottom: 20px; }
+    .method-video-item { text-align: center; min-width: 0; }
+    .method-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; padding: 2px 4px; background: #f1f5f9; border-radius: 3px; }
+    .comparison-row .video-wrapper { position: relative; aspect-ratio: 720/480; background: #000; border-radius: 6px; overflow: hidden; width: 100%; }
+    .comparison-row .video-wrapper video { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; border-radius: 6px; background: #000; }
+    .row-prompt {
+      text-align: center; font-size: 16px; font-weight: 500; color: var(--muted);
+      padding: 12px 16px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-style: italic; max-width: 800px; margin: 0 auto;
+    }
+    @media (max-width: 1400px) {
+      .comparison-row { width: calc(100% + 200px); margin-left: -100px; margin-right: -100px; }
+    }
+    @media (max-width: 1200px) {
+      .comparison-row { width: calc(100% + 100px); margin-left: -50px; margin-right: -50px; }
+    }
+    @media (max-width: 1024px) {
+      .method-videos { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    }
+    @media (max-width: 768px) {
+      .comparison-row { width: 100%; margin-left: 0; margin-right: 0; padding: 0 10px; }
+      .method-videos { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .method-name { font-size: 11px; }
+    }
+    .method-name.highlight {
+      background: #4f84d9; color: white; font-weight: 900; font-size: 12px; margin-bottom: 6px; padding: 2px 4px; border-radius: 3px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
 
+    /* PDF/大图展示样式 */
+    .pdf-container {
+      text-align: center;
+      margin: 15px 0;
+      width: calc(100% + 200px);
+      margin-left: -100px;
+      margin-right: -100px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .method-pdf { max-width: 100%; height: auto; border-radius: 8px; }
 
-
-/* 视频控制样式 */
-.video-wrapper {
-  position: relative;
-  aspect-ratio: 720/480;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.video-wrapper video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* 默认隐藏控制条 */
-.video-wrapper video {
-  /* 移除controls属性时隐藏控制条 */
-}
-
-.video-wrapper video[controls] {
-  /* 有controls属性时显示原生控制条 */
-}
-/***************2***********/
-/* Multi-Scenario Applications Styles */
-/* Multi-Scenario Applications Styles - 只增大框架尺寸 */
-.scenario-block {
-  margin-bottom: 50px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  max-width: 1600px;
-  width: calc(100% + 340px);
-  margin-left: -170px;
-  margin-right: -170px;
-  padding-left: 30px; /* 从60px减少到30px */
-  padding-right: 30px; /* 从60px减少到30px */
-  box-sizing: border-box;
-}
-.scenario-block .video-wrapper {
-  position: relative;
-  aspect-ratio: 720/480;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  /* 不设置min-height，让它自然适应容器 */
-}
-
-.scenario-block .video-wrapper video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 8px;
-  background: #000;
-}
-
-/* 第一块：左右两组，每组两个视频 */
-.single-row-videos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin-top: 0;
-}
-
-.video-group-left,
-.video-group-right {
-  text-align: center;
-}
-
-.videos-pair {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.single-video-item {
-  text-align: center;
-}
-
-.group-prompt-text {
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 8px 12px;
-  background: #f8fafc;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-}
-
-/* 第二块：两行，每行两组视频 */
-.dual-videos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 20px; /* 减少gap */
-  margin-top: 0;
-}
-
-.dual-video-group {
-  text-align: center;
-}
-
-.dual-prompt-text {
-  text-align: center;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 10px 14px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-  margin-top: 18px;
-}
-
-/* 第三块：左右两大块 */
-.large-blocks-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px; /* 减少gap */
-  margin-top: 0;
-}
-
-.large-block {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 15px; /* 减少padding */
-}
-
-.quad-videos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.quad-video-item {
-  text-align: center;
-}
-
-.quad-prompt-text {
-  text-align: center;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 6px 10px;
-  background: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-  margin-top: 10px;
-}
-
-/* 响应式设计 */
-@media (max-width: 1400px) {
-  .scenario-block {
-    width: calc(100% + 240px);
-    margin-left: -120px;
-    margin-right: -120px;
-    padding-left: 25px; /* 相应减少 */
-    padding-right: 25px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .scenario-block {
-    width: calc(100% + 160px);
-    margin-left: -80px;
-    margin-right: -80px;
-    padding-left: 20px; /* 相应减少 */
-    padding-right: 20px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .scenario-block {
-    width: calc(100% + 100px);
-    margin-left: -50px;
-    margin-right: -50px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  
-  .paired-videos-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .dual-videos-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .large-blocks-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .scenario-block {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 20px;
-  }
-  
-  .video-pair-group {
-    grid-template-columns: 1fr;
-  }
-  
-  .quad-videos-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* 第四块：一行三个视频 */
-.triple-videos-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin-top: 0;
-}
-
-.triple-video-item {
-  text-align: center;
-}
-
-.triple-prompt-text {
-  text-align: center;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 10px 14px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-  margin-top: 18px;
-}
-
-/* 响应式设计 */
-@media (max-width: 1024px) {
-  .triple-videos-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-/**************3*******/
-/**************3*******/
-/* Comparison with other methods styles - 简单一行布局 */
-.comparison-row {
-  margin-bottom: 40px;
-  width: calc(100% + 400px);
-  margin-left: -200px;
-  margin-right: -200px;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.method-videos {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.method-video-item {
-  text-align: center;
-  min-width: 0; /* 允许收缩 */
-}
-
-.method-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-  padding: 2px 4px;
-  background: #f1f5f9;
-  border-radius: 3px;
-}
-
-.comparison-row .video-wrapper {
-  position: relative;
-  aspect-ratio: 720/480;
-  background: #000;
-  border-radius: 6px;
-  overflow: hidden;
-  width: 100%;
-}
-
-.comparison-row .video-wrapper video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 6px;
-  background: #000;
-}
-
-.row-prompt {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--muted);
-  padding: 12px 16px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-style: italic;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* 响应式设计 */
-@media (max-width: 1400px) {
-  .comparison-row {
-    width: calc(100% + 200px);
-    margin-left: -100px;
-    margin-right: -100px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .comparison-row {
-    width: calc(100% + 100px);
-    margin-left: -50px;
-    margin-right: -50px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .method-videos {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .comparison-row {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 10px;
-  }
-  
-  .method-videos {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-  
-  .method-name {
-    font-size: 11px;
-  }
-}
-.method-name.highlight {
-  background: #4f84d9; /* 稍微浅一点的蓝色 */
-  color: white;
-  font-weight: 900;
-  font-size: 12px; /* 和其他method-name保持一致 */
-  margin-bottom: 6px; /* 和其他method-name保持一致 */
-  padding: 2px 4px; /* 和其他method-name保持一致 */
-  border-radius: 3px; /* 和其他method-name保持一致 */
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-/* *************************/
-/* PDF/大图展示样式 */
-.pdf-container {
-  text-align: center;
-  margin: 15px 0; /* 从30px减少到15px，拉近距离 */
-  width: calc(100% + 200px);
-  margin-left: -100px;
-  margin-right: -100px;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.method-pdf {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  /* 移除这些造成白边的样式 */
-  /* background: white; */
-  /* border: 1px solid var(--border); */
-  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
-}
-
-/* 响应式调整 */
-@media (max-width: 1200px) {
-  .pdf-container {
-    width: calc(100% + 100px);
-    margin-left: -50px;
-    margin-right: -50px;
-  }
-}
-
-@media (max-width: 768px) {
-  .pdf-container {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 10px;
-  }
-}
-
-
-/* *************************/
+    @media (max-width: 1200px) {
+      .pdf-container { width: calc(100% + 100px); margin-left: -50px; margin-right: -50px; }
+    }
+    @media (max-width: 768px) {
+      .pdf-container { width: 100%; margin-left: 0; margin-right: 0; padding: 0 10px; }
+    }
 
     /* Results Section */
     .comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
@@ -639,750 +278,742 @@
       .btn { min-width: 120px; justify-content: center; }
       .video-grid { grid-template-columns: 1fr; }
     }
+
+    /* Resource buttons */
+    .resources{
+      margin-top: 15px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center; /* 整体居中 */
+    }
+    .resources .btn{
+      background:#333;
+      color:#fff;
+      padding:8px 16px;
+      border-radius:20px;
+      text-decoration:none;
+      font-weight:500;
+      font-size:14px;
+
+      display:inline-flex;        /* 图标+文字一行 */
+      align-items:center;         /* 垂直居中 */
+      justify-content:center;     /* 水平居中 */
+      gap:6px;                    /* 图标与文字间距 */
+      transition:background-color .2s ease;
+    }
+    .resources .btn:hover{ background:#555; text-decoration:none; }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- Header -->
     <header class="header">
-      <h1 class="title">IMAGEdit: Let Any Subject Transform</h1>
+      <h1 class="title">
+  <font color="#FF0000">I</font><font color="#F0000F">M</font><font color="#E1001E">A</font><font color="#D2002D">G</font><font color="#C3003C">E</font><font color="#B4004B">d</font><font color="#A5005A">i</font><font color="#960069">t</font>
+: Let Any Subject Transform</h1>
       <div class="authors">
-        <strong>Anonymous authors</strong>
-      </div>
-      <!-- <div class="affiliations">
-        ¹ReLER Lab, University of Technology Sydney  ²CCAI, Zhejiang University
-      </div>
-      <div class="conference">ICLR 2025</div> -->
-      
-      <!-- <div class="links">
-        <a href="#" class="btn code">📁 Code</a>
-        <a href="#" class="btn data">💾 Data</a>
-        <a href="#" class="btn arxiv">📄 ArXiv</a>
-        <a href="#" class="btn">🏛️ ICLR</a>
-      </div> -->
+        <strong>
+          <a href="https://muzishen.github.io/" target="_blank" rel="noopener noreferrer">Fei Shen</a><sup>1</sup>, 
+          <a href="https://muzishen.github.io/IMAGEdit/" target="_blank" rel="noopener noreferrer">Weihao Xu</a><sup>2</sup>, 
+          <a href="https://ruiyan1995.github.io/" target="_blank" rel="noopener noreferrer">Rui Yan</a><sup>2</sup>, 
+          <a href="https://dongzhang89.github.io/" target="_blank" rel="noopener noreferrer">Dong Zhang</a><sup>3</sup>, 
+          <a href="https://shuxb104.github.io/" target="_blank" rel="noopener noreferrer">Xiangbo Shu</a><sup>2</sup>, 
+          <a href="https://scholar.google.com/citations?user=ByBLlEwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Jinhui Tang</a><sup>2,4</sup>
+        </strong>
 
-      <div class="tldr">
-        <strong>TL;DR:</strong> IMAGEdit is a training-free and plug-and-play framework that aligns prompts and retargets masks to enable any-subject video editing.
+        <!-- Affiliations -->
+        <div class="affiliations">
+          <p>
+            <sup>1</sup>National University of Singapore &nbsp;&nbsp;
+            <sup>2</sup>Nanjing University of Science and Technology
+          </p>
+          <p>
+            <sup>3</sup>Hong Kong University of Science and Technology &nbsp;&nbsp;
+            <sup>4</sup>Nanjing Forestry University
+          </p>
+        </div>
+
+        <!-- Resource buttons (moved before TL;DR) -->
+        <div class="resources">
+          <!-- <a class="btn" href="LINK_TO_PAPER" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a> -->
+          <a class="btn" href="https://muzishen.github.io/IMAGEdit/" target="_blank"><i class="fas fa-book"></i> arXiv</a>
+          <a class="btn" href="https://github.com/XWH-A/IMAGEdit" target="_blank"><i class="fab fa-github"></i> Code</a>
+          <a class="btn" href="https://muzishen.github.io/IMAGEdit/" target="_blank"><i class="fas fa-database"></i> Dataset</a>
+        </div>
+
+        <!-- TLDR -->
+        <div class="tldr">
+          <strong>TL;DR:</strong> IMAGEdit is a training-free and plug-and-play framework that aligns prompts and retargets masks to enable any-subject video editing.
+        </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <!-- <section class="hero">
-      <div class="hero-media">
-        <div class="video-placeholder" style="aspect-ratio: 16/9;">
-          🎬 Main Demo Video Placeholder
-        </div>
-      </div>
-    </section> -->
     <section class="section">
-      <!-- <h2 class="section-title">Method Overview</h2> -->
       <div class="pdf-container">
         <img src="./asset/2.png" alt="Method Overview Diagram" class="method-pdf">
       </div>
     </section>
+
     <!-- Abstract -->
     <section class="section">
       <h2 class="section-title">Abstract</h2>
       <div class="abstract">
-        We presented IMAGEdit, a training free framework for video editing with any number of subjects that changes designated categories. IMAGEdit provides robust multimodal conditioning and precise mask motion sequences through two key components, a prompt guided multimodal alignment module and a prior based mask retargeting module. By leveraging the understanding and generation capabilities of large pretrained models, these components produce aligned multimodal signals and time consistent masks that effectively remedy insufficient prompt side conditioning and overcome mask boundary entanglement in crowded scenes. The framework then conditions a pretrained mask driven video generator to synthesize the edited video. IMAGEdit is plug and play with a wide range of mask driven backbones and consistently improves overall performance. Extensive experiments on the new multi subject benchmark MSVBench verify that IMAGEdit surpasses state of the art methods. Code, dataset, and weights will be released to support further research.
+        We presented IMAGEdit, a training free framework for video editing with any number of subjects that changes designated categories. IMAGEdit provides robust multimodal conditioning and precise mask motion sequences through two key components, a prompt guided multimodal alignment module and a prior based mask retargeting module. By leveraging the understanding and generation capabilities of large pretrained models, these components produce aligned multimodal signals and time consistent masks that effectively remedy insufficient prompt side conditioning and overcome mask boundary entanglement in crowded scenes. The framework then conditions a pretrained mask driven video generator to synthesize the edited video. IMAGEdit is plug and play with a wide range of mask driven backbones and consistently improves overall performance. Extensive experiments on the new multi subject benchmark MSVBench verify that IMAGEdit surpasses state of the art methods. 
       </div>
     </section>
 
-    <!-- Method -->
-    <!-- <section class="section">
-      <h2 class="section-title">Method</h2>
-      <div class="method-diagram">
-        <div class="video-placeholder" style="aspect-ratio: 2/1; max-width: 800px; margin: 0 auto;">
-          📊 Method Diagram Placeholder
-        </div>
-      </div>
-      <p>Our approach integrates ST-Layout with the frozen SD for multi-grained editing, where we modulate self- and cross-attention in a unified manner. (1) In cross-attention, we view each local prompt as positive pairs, while the prompt and non-relevant areas are negative pairs, enabling text-to-region control. (2) In self-attention, we enhance positive correlations within intra-regions and restrict negative interactions between inter-regions across frames, making each query only attend to the target region and keep feature separation.</p>
-    </section> -->
 
-    <!-- Multi-Grained Video Editing Definition
-    <section class="section">
-      <h2 class="section-title">Definition of Multi-grained Video Editing</h2>
-      <div class="comparison">
-        <div class="comparison-item">
-          <div class="video-placeholder" style="aspect-ratio: 16/9;">
-            🎭 Class Level Demo
-          </div>
-          <div class="comparison-label">Class Level: Editing objects within the same class</div>
-        </div>
-        <div class="comparison-item">
-          <div class="video-placeholder" style="aspect-ratio: 16/9;">
-            🎯 Instance Level Demo
-          </div>
-          <div class="comparison-label">Instance Level: Editing each individual instance to distinct object</div>
-        </div>
-        <div class="comparison-item">
-          <div class="video-placeholder" style="aspect-ratio: 16/9;">
-            🧩 Part Level Demo
-          </div>
-          <div class="comparison-label">Part Level: Applying part-level edits to specific elements of individual instances</div>
-        </div>
-      </div>
-    </section> -->
-
-   <!-- Video Results -->
-   <!-- Video Results -->
-<!-- the third block -->
+ <!-- Method -->
 <section class="section">
-  <h2 class="section-title">Comparison with Other Video Editing Methods</h2>
-
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-     
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dogs-scale_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row-prompt">Two [Puppies -> Kittens] together on a weighing scale.</div>
+  <h2 class="section-title">How does it work?</h2>
+  <div class="method">
+    IMAGEdit is a training-free, plug-and-play framework that combines prompt-guided multimodal alignment with prior-based mask retargeting to enable any-subject video editing. It first grounds user prompts with strong textual–visual alignment, then refines instance masks using depth and temporal priors to ensure smooth and consistent motion boundaries. These enhanced conditions are fed into a pretrained mask-driven video generator, producing subject-accurate, temporally coherent, and background-preserving editing results without the need for additional training.
   </div>
 
-
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-     
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/dog-gooses_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row-prompt">One black sheepdog herding four [Ducks -> Robot Ducks] on green field.</div>
+  <!-- 插图 -->
+  <div class="method-diagram">
+    <img src="./asset/imagedit.png" alt="IMAGEdit Framework Overview">
   </div>
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-     
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row-prompt">Four [Female Runners -> Spider-Men] sprint on track.</div>
-  </div>
-
-
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Minions-Kabaddi-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    <div class="row-prompt">Seven [Kabaddi Players -> Gokus] facing each other on a purple mat in stadium lighting.</div>
-  </div>
-  <!-- 第一行 -->
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    <div class="row-prompt">[Players -> Spider-Men] on trampolines throwing dodgeballs during an intense match.</div>
-  </div>
-
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/ori_video_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-     
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/sprinters-racing-in-stadium_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row-prompt">[Relay Runners -> Astronauts] sprinting on track.</div>
-  </div>
-
-
-
-  <div class="comparison-row">
-    <div class="method-videos">
-      <div class="method-video-item">
-        <div class="method-name">Original</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/Indoor-Volleyball-Match_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      
-      <div class="method-video-item">
-        <div class="method-name">FateZero</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/Fatezero_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">TokenFlow</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/token_flow_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoPainter</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/video_painter_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">VideoGrain</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/videograin_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name">DMT</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/DMT_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <div class="method-video-item">
-        <div class="method-name highlight">IMAGEdit</div>
-        <div class="video-wrapper">
-          <video autoplay loop muted playsinline preload="auto">
-            <source src="./asset/compare/Indoor-Volleyball-Match_720/VACE_dual_processed.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-    <div class="row-prompt">[Volleyball Players -> Robots] compete on indoor court with net.</div>
-  </div>
-  <!-- 第二行和第三行类似结构... -->
 </section>
-<!-- the third block end -->
 
 
 
+    <!-- the third block -->
+    <section class="section">
+      <h2 class="section-title">Comparison with Other Video Editing Methods</h2>
 
-
-<section class="section">
-    <h2 class="section-title">Main Video Results</h2>
-    <div class="comparison-grid">
-      
-       <!-- Comparison Group 1 -->
-       <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/tuk-tuk_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/dogs-scale_720/ori_video_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/tuk-tuk_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/dogs-scale_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dogs-scale_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dogs-scale_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dogs-scale_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dogs-scale_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dogs-scale_720/VACE_dual_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </div>
-        <div class="prompt-text">Three [People -> Super Mario] sitting in car backseat.</div>
+        <div class="row-prompt">Two [Puppies -> Kittens] together on a weighing scale.</div>
       </div>
 
-       <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/dog-gooses_720/ori_video_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/dog-gooses_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dog-gooses_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dog-gooses_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dog-gooses_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dog-gooses_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/dog-gooses_720/VACE_dual_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </div>
-        <div class="prompt-text">Four [People -> Robots] standing on football court.</div>
+        <div class="row-prompt">One black sheepdog herding four [Ducks -> Robot Ducks] on green field.</div>
       </div>
 
-      <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/ori_video_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/Fatezero_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-        </div>
-        <div class="prompt-text">Four [Hungry Dogs -> Robot Wolves] surrounding a bowl of food outdoors.</div>
-      </div>
-      <!-- Comparison Group 2 -->
-      <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/token_flow_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/video_painter_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-        </div>
-        <div class="prompt-text">A group of [People -> Astronauts] practicing boxing in a fitness studio.</div>
-      </div>
-      
-      <!-- Comparison Group 3 -->
-      <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/videograin_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/DMT_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
-        </div>
-        <div class="prompt-text">A team of [Men -> Spider-Men] rowing together on a river.</div>
-      </div>
-  
-      <!-- Comparison Group 4 -->
-      <div class="comparison-group">
-        <div class="video-pair">
-          <div class="video-item">
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/ori_720_16/110m-Hurdles-Mid-Air-Dash_crop_processed.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div class="video-item">
-            <div class="video-wrapper">
-              <video autoplay loop muted playsinline preload="auto">
-                <source src="./asset/IMAGEdit_720_16/110m-Hurdles-Mid-Air-Dash_processed.mp4" type="video/mp4">
+                <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/VACE_dual_processed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </div>
-        <div class="prompt-text">Eight [Hurdlers -> Iron Men] leap mid-race over purple hurdles.</div>
+        <div class="row-prompt">Four [Female Runners -> Spider-Men] sprint on track.</div>
       </div>
-  
-     
-  </section>
 
-  <section class="section">
-    <h2 class="section-title">Multi-Scenario Applications</h2>
-    
-    <!-- 第一块：左右两组，每组两个视频 -->
-    <div class="scenario-block block-1">
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/ori_video_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Minions-Kabaddi-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="row-prompt">Seven [Kabaddi Players -> Gokus] facing each other on a purple mat in stadium lighting.</div>
+      </div>
+
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/ori_video_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="row-prompt">[Players -> Spider-Men] on trampolines throwing dodgeballs during an intense match.</div>
+      </div>
+
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/ori_video_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/sprinters-racing-in-stadium_720/VACE_dual_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="row-prompt">[Relay Runners -> Astronauts] sprinting on track.</div>
+      </div>
+
+      <div class="comparison-row">
+        <div class="method-videos">
+          <div class="method-video-item">
+            <div class="method-name">Original</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/Indoor-Volleyball-Match_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">FateZero</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/Fatezero_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">TokenFlow</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/token_flow_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoPainter</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/video_painter_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">VideoGrain</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/videograin_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name">DMT</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/DMT_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="method-video-item">
+            <div class="method-name highlight">IMAGEdit</div>
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/compare/Indoor-Volleyball-Match_720/VACE_dual_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="row-prompt">[Volleyball Players -> Robots] compete on indoor court with net.</div>
+      </div>
+    </section>
+    <!-- the third block end -->
+
+    <section class="section">
+      <h2 class="section-title">Main Video Results</h2>
+      <div class="comparison-grid">
+        <!-- multiple comparison groups (unchanged for brevity) -->
+        <!-- ... (your original groups are kept as-is) ... -->
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/tuk-tuk_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/tuk-tuk_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">Three [People -> Super Mario] sitting in car backseat.</div>
+        </div>
+
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">Four [People -> Robots] standing on football court.</div>
+        </div>
+
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">Four [Hungry Dogs -> Robot Wolves] surrounding a bowl of food outdoors.</div>
+        </div>
+
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">A group of [People -> Astronauts] practicing boxing in a fitness studio.</div>
+        </div>
+
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">A team of [Men -> Spider-Men] rowing together on a river.</div>
+        </div>
+
+        <div class="comparison-group">
+          <div class="video-pair">
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/ori_720_16/110m-Hurdles-Mid-Air-Dash_crop_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="video-item">
+              <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto">
+                  <source src="./asset/IMAGEdit_720_16/110m-Hurdles-Mid-Air-Dash_processed.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-text">Eight [Hurdlers -> Iron Men] leap mid-race over purple hurdles.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Multi-Scenario Applications</h2>
+
+      <!-- Blocks preserved as in your original -->
+      <!-- 1 -->
+      <div class="scenario-block block-1">
         <div class="single-row-videos">
-          <!-- 左组：两个视频 -->
           <div class="video-group-left">
             <div class="videos-pair">
               <div class="single-video-item">
@@ -1404,8 +1035,7 @@
             </div>
             <div class="group-prompt-text">Automn Forest -> Winter Forest</div>
           </div>
-          
-          <!-- 右组：两个视频 -->
+
           <div class="video-group-right">
             <div class="videos-pair">
               <div class="single-video-item">
@@ -1429,11 +1059,10 @@
           </div>
         </div>
       </div>
-  
 
+      <!-- 1b -->
       <div class="scenario-block block-1">
         <div class="single-row-videos">
-          <!-- 左组：两个视频 -->
           <div class="video-group-left">
             <div class="videos-pair">
               <div class="single-video-item">
@@ -1455,8 +1084,7 @@
             </div>
             <div class="group-prompt-text">The Eiffel Tower -> The Space Needle</div>
           </div>
-          
-          <!-- 右组：两个视频 -->
+
           <div class="video-group-right">
             <div class="videos-pair">
               <div class="single-video-item">
@@ -1481,280 +1109,260 @@
         </div>
       </div>
 
+      <!-- 2 -->
+      <div class="scenario-block block-2">
+        <div class="dual-videos-grid">
+          <div class="dual-video-group">
+            <div class="video-pair">
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/Fencers-ori_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/fench_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="dual-prompt-text">Left -> Ultraman; Right -> Robot</div>
+          </div>
 
+          <div class="dual-video-group">
+            <div class="video-pair">
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/bear_ori.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/bear_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="dual-prompt-text">Left -> Gorilla; Right -> Polar Bear</div>
+          </div>
 
+          <div class="dual-video-group">
+            <div class="video-pair">
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/night-race2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/nightrace2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="dual-prompt-text">Left -> Lightning McQueen; Right -> Yellow Cartoon Porsche </div>
+          </div>
 
-    <!-- 第二块：两行，每行两组视频 -->
-    <div class="scenario-block block-2">
-      <div class="dual-videos-grid">
-        <!-- 第一行 -->
-        <div class="dual-video-group">
-          <div class="video-pair">
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/Fencers-ori_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+          <div class="dual-video-group">
+            <div class="video-pair">
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/strong-men-arm-wrestling_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m2_720/strong-men-arm-wrestling-edit_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             </div>
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/fench_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
+            <div class="dual-prompt-text">Two People (arm wrestling) -> Two Supermen</div>
           </div>
-          <div class="dual-prompt-text">Left -> Ultraman; Right -> Robot</div>
-        </div>
-  
-        <div class="dual-video-group">
-          <div class="video-pair">
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/bear_ori.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/bear_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-          <div class="dual-prompt-text">Left -> Gorilla; Right -> Polar Bear</div>
-        </div>
-  
-        <!-- 第二行 -->
-        
-  
-        <div class="dual-video-group">
-          <div class="video-pair">
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/night-race2.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/nightrace2.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-          <div class="dual-prompt-text">Left -> Lightning McQueen; Right -> Yellow Cartoon Porsche </div>
-        </div>
-        <div class="dual-video-group">
-          <div class="video-pair">
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/strong-men-arm-wrestling_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-            <div class="video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m2_720/strong-men-arm-wrestling-edit_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
-          <div class="dual-prompt-text">Two People (arm wrestling) -> Two Supermen</div>
         </div>
       </div>
-    </div>
-    <div class="scenario-block block-4">
-      <div class="triple-videos-row">
-        <div class="triple-video-item">
-          <div class="video-wrapper">
-            <video autoplay loop muted playsinline preload="auto">
-              <source src="./asset/m2_720/horse_ori_processed.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+
+      <div class="scenario-block block-4">
+        <div class="triple-videos-row">
+          <div class="triple-video-item">
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/m2_720/horse_ori_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
-          <!-- 第一个视频没有prompt -->
-        </div>
-        
-        <div class="triple-video-item">
-          <div class="video-wrapper">
-            <video autoplay loop muted playsinline preload="auto">
-              <source src="./asset/m2_720/Horse-Parade-Team-Formation-all-2.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div class="triple-video-item">
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/m2_720/Horse-Parade-Team-Formation-all-2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="triple-prompt-text">Turn 1: Horse Riders -> Gokus</div>
           </div>
-          <div class="triple-prompt-text">Turn 1: Horse Riders -> Gokus</div>
-        </div>
-        
-        <div class="triple-video-item">
-          <div class="video-wrapper">
-            <video autoplay loop muted playsinline preload="auto">
-              <source src="./asset/m2_720/horse-Ironman_processed.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div class="triple-video-item">
+            <div class="video-wrapper">
+              <video autoplay loop muted playsinline preload="auto">
+                <source src="./asset/m2_720/horse-Ironman_processed.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="triple-prompt-text">Turn 2: The two above (Gokus -> Iron-Men)</div>
           </div>
-          <div class="triple-prompt-text">Turn 2: The two above (Gokus -> Iron-Men)</div>
         </div>
       </div>
-    </div>
-    <!-- 第三块：左右两大块，每块内部2行4个视频 -->
-    <div class="scenario-block block-3">
-      <div class="large-blocks-container">
-        <!-- 左大块 -->
-        <div class="large-block">
-          <div class="quad-videos-grid">
-            <div class="quad-video-item main-video">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man-running_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+
+      <div class="scenario-block block-3">
+        <div class="large-blocks-container">
+          <div class="large-block">
+            <div class="quad-videos-grid">
+              <div class="quad-video-item main-video">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man-running_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man_withglass_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man_withglass_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Add Glasses</div>
               </div>
-              <div class="quad-prompt-text">Add Glasses</div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/dlt_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/dlt_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Change Face To "Kevin Durant"</div>
               </div>
-              <div class="quad-prompt-text">Change Face To "Kevin Durant"</div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man-james_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man-james_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Change Face To "LeBron James"</div>
               </div>
-              <div class="quad-prompt-text">Change Face To "LeBron James"</div>
             </div>
           </div>
-        </div>
-  
-        <!-- 右大块 -->
-        <div class="large-block">
-          <div class="quad-videos-grid">
-            <div class="quad-video-item main-video">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man-checking-phone_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+
+          <div class="large-block">
+            <div class="quad-videos-grid">
+              <div class="quad-video-item main-video">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man-checking-phone_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/remove_glass_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/remove_glass_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Remove Glasses</div>
               </div>
-              <div class="quad-prompt-text">Remove Glasses</div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man-phone_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man-phone_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Plaid Shirt -> Business Suit</div>
               </div>
-              <div class="quad-prompt-text">Plaid Shirt -> Business Suit</div>
-            </div>
-            <div class="quad-video-item">
-              <div class="video-wrapper">
-                <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/m3_720/man-phone2_processed.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+              <div class="quad-video-item">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./asset/m3_720/man-phone2_processed.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="quad-prompt-text">Plaid Shirt -> Hawaiian Shirt</div>
               </div>
-              <div class="quad-prompt-text">Plaid Shirt -> Hawaiian Shirt</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
+    </section>
+
+
+     <section class="section">
+      <h2 class="section-title">Disclaimer</h2>
+      <div class="disclaimer">
+        We make this project openly available to the research community. Most of the datasets and resources involved are either generated by us or obtained under proper licenses. If you believe any material infringes your rights, please contact us, and we will take immediate action to remove or replace the content. Any components derived from third-party models or datasets must strictly follow their original license agreements.
+
+This work is intended to promote academic exploration and innovation in the area of controllable generation. Users are welcome to experiment with the released code and models under the condition that they act in accordance with local regulations and use them responsibly. The authors and contributors disclaim any liability for potential misuse or unintended applications of this tool.
+      </div>
+    </section>
+    
     <!-- Citation -->
-    <!-- <section class="section">
-      <h2 class="section-title">Citation</h2>
-      <pre style="background: var(--card); padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; border: 1px solid var(--border);">@inproceedings{yang2025videograin,
-  title={VideoGrain: Modulating Space-Time Attention for Multi-Grained Video Editing},
-  author={Yang, Kanglong and Zhu, Liezhe and Pan, Nihit and Yang, Yi},
-  booktitle={International Conference on Learning Representations},
-  year={2025}
-}</pre>
-    </section> -->
+<section class="section">
+  <h2 class="section-title">BibTeX</h2>
+  <pre style="background: var(--card); 
+              padding: 20px; 
+              border-radius: 8px; 
+              overflow-x: auto; 
+              font-size: 14px; 
+              border: 1px solid var(--border);">
+@article{shen2025imagedit,
+  title={IMAGEdit: Let Any Subject Transform},
+  author={Shen, Fei and Xu, Weihao and Yan, Rui and Zhang, Dong and Shu, Xiangbo and Tang, Jinhui},
+  journal={arXiv},
+  year={2025},
+  url={https://arxiv.org/abs/XXXX.XXXXX},
+}
+  </pre>
+</section>
 
-    <!-- Footer -->
-    <!-- <footer class="footer">
-      <p>© 2025 VideoGrain Project · <a href="https://github.com/your-username/videograin">View on GitHub</a></p>
-      <p>For questions or collaborations, please contact the authors.</p>
-    </footer> -->
+<section class="section">
+  <h2 class="section-title">Visitors</h2>
+  <div style="text-align:center;">
+    <script type="text/javascript" id="mapmyvisitors" 
+      src="//mapmyvisitors.com/map.js?d=6Mp3XrSptPhY4jpwRJ-XqWXjqgwJsDhPO6R7n_GkU98&cl=ffffff&w=a">
+    </script>
+    <p style="margin-top:15px; font-size:14px; color:#4a5568;">
+      Thanks to <a href="https://mapmyvisitors.com/" target="_blank" rel="noopener noreferrer">MapMyVisitors</a> 
+      for the visitor map service.
+    </p>
+  </div>
+</section>
+
+
+    
   </div>
   <script src="video-sync.js"></script>
-  <!-- <script>
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Add animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe sections for animation
-    document.querySelectorAll('.section, .video-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-  </script> -->
 </body>
 </html>
