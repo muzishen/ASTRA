@@ -1,1 +1,1 @@
-# IMAGEdit
+# imagedit
