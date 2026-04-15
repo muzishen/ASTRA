@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IMAGEdit: LET ANY SUBJECT TRANSFORM </title>
-  <meta name="description" content="A training-free method for mulit-subject video editing" />
+  <title>ASTRA: Let Arbitrary Subjects Transform in Video Editing</title>
+  <meta name="description" content="A training-free framework for arbitrary-subjects video editing" />
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -309,17 +309,16 @@
   <div class="container">
     <!-- Header -->
     <header class="header">
-      <h1 class="title">
-  <font color="#FF0000">I</font><font color="#F0000F">M</font><font color="#E1001E">A</font><font color="#D2002D">G</font><font color="#C3003C">E</font><font color="#B4004B">d</font><font color="#A5005A">i</font><font color="#960069">t</font>
-: Let Any Subject Transform</h1>
+      <h1 class="title">ASTRA: Let Arbitrary Subjects Transform in Video Editing</h1>
       <div class="authors">
         <strong>
           <a href="https://muzishen.github.io/" target="_blank" rel="noopener noreferrer">Fei Shen</a><sup>1</sup>, 
-          <a href="https://muzishen.github.io/IMAGEdit/" target="_blank" rel="noopener noreferrer">Weihao Xu</a><sup>2</sup>, 
+          <a href="https://github.com/XWH-A" target="_blank" rel="noopener noreferrer">Weihao Xu</a><sup>2</sup>, 
           <a href="https://ruiyan1995.github.io/" target="_blank" rel="noopener noreferrer">Rui Yan</a><sup>2</sup>, 
-          <a href="https://dongzhang89.github.io/" target="_blank" rel="noopener noreferrer">Dong Zhang</a><sup>3</sup>, 
+          <a href="https://dongzhang89.github.io/" target="_blank" rel="noopener noreferrer">Dong Zhang</a><sup>2</sup>, 
           <a href="https://shuxb104.github.io/" target="_blank" rel="noopener noreferrer">Xiangbo Shu</a><sup>2</sup>, 
-          <a href="https://scholar.google.com/citations?user=ByBLlEwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Jinhui Tang</a><sup>2,4</sup>
+          <a href="https://scholar.google.com/citations?user=ByBLlEwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Jinhui Tang</a><sup>3</sup>, 
+          <a href="https://scholar.google.com/citations?user=ByBLlEwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Maocheng Zhao</a><sup>3</sup>
         </strong>
 
         <!-- Affiliations -->
@@ -329,29 +328,27 @@
             <sup>2</sup>Nanjing University of Science and Technology
           </p>
           <p>
-            <sup>3</sup>Hong Kong University of Science and Technology &nbsp;&nbsp;
-            <sup>4</sup>Nanjing Forestry University
+            <sup>3</sup>Nanjing Forestry University
           </p>
         </div>
 
         <!-- Resource buttons (moved before TL;DR) -->
         <div class="resources">
           <!-- <a class="btn" href="LINK_TO_PAPER" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a> -->
-          <a class="btn" href="https://arxiv.org/pdf/2510.01186" target="_blank"><i class="fas fa-book"></i> arXiv</a>
-          <a class="btn" href="https://github.com/XWH-A/IMAGEdit" target="_blank"><i class="fab fa-github"></i> Code</a>
-          <a class="btn" href="https://muzishen.github.io/IMAGEdit/" target="_blank"><i class="fas fa-database"></i> Dataset</a>
+          <a class="btn" href="https://arxiv.org/abs/2510.01186" target="_blank"><i class="fas fa-book"></i> arXiv</a>
+          <a class="btn" href="https://github.com/XWH-A/ASTRA" target="_blank"><i class="fab fa-github"></i> Code</a>
         </div>
 
         <!-- TLDR -->
         <div class="tldr">
-          <strong>TL;DR:</strong> IMAGEdit is a training-free and plug-and-play framework that aligns prompts and retargets masks to enable any-subject video editing.
+          <strong>TL;DR:</strong> ASTRA is a training-free, plug-and-play framework that enables arbitrary-subjects video editing by combining prompt-guided multimodal alignment with prior-based mask retargeting, resolving boundary entanglement and attention dilution in complex multi-subject scenes.
         </div>
       </div>
     </header>
 
     <section class="section">
       <div class="pdf-container">
-        <img src="./asset/2.png" alt="Method Overview Diagram" class="method-pdf">
+        <img src="./asset/ASTRA_teaser.png" alt="ASTRA Teaser" class="method-pdf">
       </div>
     </section>
 
@@ -359,7 +356,7 @@
     <section class="section">
       <h2 class="section-title">Abstract</h2>
       <div class="abstract">
-        We presented IMAGEdit, a training free framework for video editing with any number of subjects that changes designated categories. IMAGEdit provides robust multimodal conditioning and precise mask motion sequences through two key components, a prompt guided multimodal alignment module and a prior based mask retargeting module. By leveraging the understanding and generation capabilities of large pretrained models, these components produce aligned multimodal signals and time consistent masks that effectively remedy insufficient prompt side conditioning and overcome mask boundary entanglement in crowded scenes. The framework then conditions a pretrained mask driven video generator to synthesize the edited video. IMAGEdit is plug and play with a wide range of mask driven backbones and consistently improves overall performance. Extensive experiments on the new multi subject benchmark MSVBench verify that IMAGEdit surpasses state of the art methods. 
+        While recent advances in generative models have propelled video editing, existing methods primarily focus on single or few subjects and struggle in complex, multi-subject scenarios. Specifically, in dense scenes with heavy occlusions, current approaches often suffer from severe mask boundary entanglement and attention dilution, leading to attribute leakage and temporal instability. To address these critical limitations, we present an arbitrary-subjects training-free retargeting and alignment (ASTRA) framework for video editing that enables an arbitrary number of subjects to transform seamlessly. ASTRA manipulates the appearances of multiple designated subjects while strictly preserving non-target regions, all without requiring any model finetuning or retraining. We achieve this by generating robust multimodal conditioning and precise mask sequences through two core components: a prompt-guided multimodal alignment module and a prior-based mask retargeting module. By leveraging the comprehensive understanding and generation capabilities of large foundation models, these components generate precise multimodal conditions and temporally consistent mask sequences. ASTRA acts as a versatile plug-in that is completely compatible with diverse mask-driven video generation models, significantly enhancing overall editing performance. Extensive experiments on our newly constructed multi-subject benchmark, MSVBench, verify that ASTRA consistently surpasses state-of-the-art methods. 
       </div>
     </section>
 
@@ -368,12 +365,12 @@
 <section class="section">
   <h2 class="section-title">How does it work?</h2>
   <div class="method">
-    IMAGEdit is a training-free, plug-and-play framework that combines prompt-guided multimodal alignment with prior-based mask retargeting to enable any-subject video editing. It first grounds user prompts with strong textual–visual alignment, then refines instance masks using depth and temporal priors to ensure smooth and consistent motion boundaries. These enhanced conditions are fed into a pretrained mask-driven video generator, producing subject-accurate, temporally coherent, and background-preserving editing results without the need for additional training.
+    ASTRA is a training-free, plug-and-play framework designed to seamlessly transform an arbitrary number of subjects in video editing. It comprises two synergistic core modules: (i) a <strong>Prompt-Guided Multimodal Alignment</strong> module that extracts subject-specific tokens from the editing prompt, generates a visual prior via a T2I model, and uses a VLM to produce enriched, visually-grounded textual conditions — effectively resolving attention dilution in crowded multi-subject scenes; and (ii) a <strong>Prior-Based Mask Retargeting</strong> module that, constrained by depth priors, spatially re-estimates instance boundaries and generates a temporally consistent retargeted mask sequence, significantly reducing mask leakage. Finally, ASTRA adopts a <strong>Timestep-Aware Video Generation</strong> strategy, applying structural guidance during early denoising steps and reverting to mask-only conditioning in later refinement steps to prevent artifacts while preserving high-frequency details.
   </div>
 
   <!-- 插图 -->
   <div class="method-diagram">
-    <img src="./asset/imagedit.png" alt="IMAGEdit Framework Overview">
+    <img src="./asset/new_framework.png" alt="ASTRA Framework Overview">
   </div>
 </section>
 
@@ -440,7 +437,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/dogs-scale_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -509,7 +506,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/dog-gooses_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -578,7 +575,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/Relay-Race-Sprint-Showdown_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -647,7 +644,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/Minions-Kabaddi-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -716,7 +713,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/Trampoline-Dodgeball-Battle_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -785,7 +782,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/sprinters-racing-in-stadium_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -854,7 +851,7 @@
             </div>
           </div>
           <div class="method-video-item">
-            <div class="method-name highlight">IMAGEdit</div>
+            <div class="method-name highlight">ASTRA</div>
             <div class="video-wrapper">
               <video autoplay loop muted playsinline preload="auto">
                 <source src="./asset/compare/Indoor-Volleyball-Match_720/VACE_dual_processed.mp4" type="video/mp4">
@@ -886,7 +883,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/tuk-tuk_processed.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/tuk-tuk_processed.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -908,7 +905,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/Football-Match-Start_processed.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -930,7 +927,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/dogs-gathering-around-food_processed2.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -952,7 +949,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/people-training-boxing-class_processed.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -974,7 +971,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/team-rowing-on-river_processed2.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -996,7 +993,7 @@
             <div class="video-item">
               <div class="video-wrapper">
                 <video autoplay loop muted playsinline preload="auto">
-                  <source src="./asset/IMAGEdit_720_16/110m-Hurdles-Mid-Air-Dash_processed.mp4" type="video/mp4">
+                  <source src="./asset/ASTRA_720_16/110m-Hurdles-Mid-Air-Dash_processed.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -1337,11 +1334,11 @@ This work is intended to promote academic exploration and innovation in the area
               overflow-x: auto; 
               font-size: 14px; 
               border: 1px solid var(--border);">
-@article{shen2025imagedit,
-  title={IMAGEdit: Let Any Subject Transform},
-  author={Shen, Fei and Xu, Weihao and Yan, Rui and Zhang, Dong and Shu, Xiangbo and Tang, Jinhui},
-  journal={arXiv preprint arXiv:2510.01186},
-  year={2025}
+@article{shen2025astra,
+  title={ASTRA: Let Arbitrary Subjects Transform in Video Editing},
+  author={Shen, Fei and Xu, Weihao and Yan, Rui and Zhang, Dong and Shu, Xiangbo and Tang, Jinhui and Zhao, Maocheng},
+  journal={IEEE Transactions on Multimedia},
+  year={2026}
 }
   </pre>
 </section>
